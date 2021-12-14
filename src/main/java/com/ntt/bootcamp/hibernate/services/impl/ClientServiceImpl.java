@@ -1,5 +1,7 @@
 package com.ntt.bootcamp.hibernate.services.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +67,12 @@ public class ClientServiceImpl implements ClientService {
 			System.out.println("No se ha encontrado ningún cliente con ese nombre y apellidos");
 		}
 		return client;
+	}
+
+	@Override
+	@Transactional
+	public List<Client> searchAll() {		
+		return clientDao.showAll();
 	}
 
 }

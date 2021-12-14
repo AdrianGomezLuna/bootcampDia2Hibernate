@@ -1,5 +1,7 @@
 package com.ntt.bootcamp.hibernate.services;
 
+import java.util.List;
+
 import com.ntt.bootcamp.hibernate.bbdd.Client;
 
 public interface ClientService {
@@ -35,5 +37,11 @@ public interface ClientService {
 	 * @return Client cliente encontrado 
 	 */
 	public Client searchName(Client client);
+
+	/**
+	 * Muestra todos los resultados que tenemos en Client
+	 * @return lista de clientes
+	 */
+	public List<Client> searchAll();
 
 }

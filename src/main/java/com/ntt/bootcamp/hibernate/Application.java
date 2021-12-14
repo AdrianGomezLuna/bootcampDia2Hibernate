@@ -1,5 +1,7 @@
 package com.ntt.bootcamp.hibernate;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -124,6 +126,14 @@ public class Application implements CommandLineRunner {
 		} else {
 			System.out.println("No encontrado");
 		}*/
+		
+		
+		//Muestra todos los clientes
+		System.out.println("MUESTRA LISTADO DE CLIENTES:");
+		List<Client> arrayClient = clientService.searchAll();
+		for (Client client : arrayClient) {
+			System.out.println(client.toString());
+		}
 	}
 
 }

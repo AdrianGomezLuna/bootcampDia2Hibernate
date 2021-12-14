@@ -1,5 +1,7 @@
 package com.ntt.bootcamp.hibernate.bbdd.dao.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
@@ -30,15 +32,7 @@ public class ClientDaoImpl implements ClientDao {
 		currentSession.close();
 	}
 
-	@Override
-	@Transactional
-	public void showAll() {
-		// Obtenemos la sesión
-		Session currentSession = entityManager.unwrap(Session.class);
-		// Insertamos en bbdd
-		// Client client = currentSession.find(Client.class, id);
 
-	}
 
 	@Override
 	@Transactional
@@ -75,6 +69,7 @@ public class ClientDaoImpl implements ClientDao {
 	}
 
 	@Override
+	@Transactional
 	public Client searchName(Client client) {
 		Client clientSearch = null;
 		// Obtenemos la sesión
@@ -82,6 +77,16 @@ public class ClientDaoImpl implements ClientDao {
 		clientSearch = currentSession.find(Client.class, client.getName());
 		
 		return clientSearch;
+	}
+
+
+
+	@Override
+	@Transactional
+	public List<Client> showAll() {
+		// Obtenemos la sesión
+		Session currentSession = entityManager.unwrap(Session.class);
+		return currentSession.createQuery("select m from Client m", Client.class).getResultList();
 	}
 
 }

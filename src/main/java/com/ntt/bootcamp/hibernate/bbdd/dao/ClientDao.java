@@ -1,5 +1,7 @@
 package com.ntt.bootcamp.hibernate.bbdd.dao;
 
+import java.util.List;
+
 import com.ntt.bootcamp.hibernate.bbdd.Client;
 
 public interface ClientDao {
@@ -13,7 +15,7 @@ public interface ClientDao {
 	/**
 	 * Método que mostrará todos los clientes que tenemos
 	 */
-	public void showAll();
+	public List<Client> showAll();
 	
 	/**
 	 * Método que buscará por ID del cliente
