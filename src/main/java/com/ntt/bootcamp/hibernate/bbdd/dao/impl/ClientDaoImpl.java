@@ -11,60 +11,77 @@ import com.ntt.bootcamp.hibernate.bbdd.Client;
 import com.ntt.bootcamp.hibernate.bbdd.dao.ClientDao;
 
 @Repository
-public class ClientDaoImpl implements ClientDao{
+public class ClientDaoImpl implements ClientDao {
 
 	/**
 	 * Manejador de entidades
 	 */
 	@Autowired
 	private EntityManager entityManager;
-	
+
 	@Override
 	@Transactional
 	public void insert(Client client) {
-		//Obtenemos la sesión
+		// Obtenemos la sesión
 		Session currentSession = entityManager.unwrap(Session.class);
-		//Insertamos en bbdd
+		// Insertamos en bbdd
 		currentSession.save(client);
-		//Cerramos la sesión
-		currentSession.close();	
+		// Cerramos la sesión
+		currentSession.close();
 	}
 
 	@Override
+	@Transactional
 	public void showAll() {
-		// TODO Auto-generated method stub
-		
+		// Obtenemos la sesión
+		Session currentSession = entityManager.unwrap(Session.class);
+		// Insertamos en bbdd
+		// Client client = currentSession.find(Client.class, id);
+
 	}
 
 	@Override
 	@Transactional
 	public Client searchId(Long id) {
-		//Obtenemos la sesión
+		// Obtenemos la sesión
 		Session currentSession = entityManager.unwrap(Session.class);
-		//Insertamos en bbdd
+		// Buscamos en bbdd
 		Client client = currentSession.find(Client.class, id);
-		//Cerramos la sesión
-		currentSession.close();	
-		//devolvemos el jugador
+		// Cerramos la sesión
+		currentSession.close();
+		// devolvemos el jugador
 		return client;
 	}
 
 	@Override
+	@Transactional
 	public void delete(Client client) {
-		// TODO Auto-generated method stub
-		
+		// Obtenemos la sesión
+		Session currentSession = entityManager.unwrap(Session.class);
+		// Borramos en bbdd
+		currentSession.remove(currentSession.contains(client)? client : currentSession.merge(client));
+		// Cerramos la sesión
+		currentSession.close();
 	}
 
 	@Override
-	public Client update(Client client) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public void update(Client client) {
+		// Obtenemos la sesión
+		Session currentSession = entityManager.unwrap(Session.class);
+		//Le agregamos la nueva actualización
+		currentSession.saveOrUpdate(client);
+		currentSession.close();
 	}
 
 	@Override
 	public Client searchName(Client client) {
-		// TODO Auto-generated method stub
-		return null;
+		Client clientSearch = null;
+		// Obtenemos la sesión
+		Session currentSession = entityManager.unwrap(Session.class);
+		clientSearch = currentSession.find(Client.class, client.getName());
+		
+		return clientSearch;
 	}
 
 }

@@ -68,6 +68,12 @@ public class Client {
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
+
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", name=" + name + ", lastName1=" + lastName1 + ", lastName2=" + lastName2
+				+ ", dni=" + dni + "]";
+	}
 	
 	
 

@@ -31,9 +31,8 @@ public interface ClientDao {
 	/**
 	 * Método para actualizar a algún cliente
 	 * @param client que va a ser actualizado
-	 * @return Client cliente que ha sido modificado
 	 */
-	public Client update(Client client);
+	public void update(Client client);
 	
 	/**
 	 * Método que busca por nombre, apellido1 y apellido2

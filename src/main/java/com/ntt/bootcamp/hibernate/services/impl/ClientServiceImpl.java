@@ -30,6 +30,39 @@ public class ClientServiceImpl implements ClientService {
 		Client client = null;
 		if (id != null) {
 			client = clientDao.searchId(id);
+		} else {
+			System.out.println("No se ha encontrado ningún cliente con ese id");
+		}
+		return client;
+	}
+
+	@Override
+	@Transactional
+	public void updateClient(Client client) {
+		if (client != null) {
+			clientDao.update(client);
+			System.out.println("Cliente actualizado");
+		}		
+	}
+
+	@Override
+	@Transactional
+	public void deleteClient(Client client) {
+		if (client != null) {
+			clientDao.delete(client);
+			System.out.println("Cliente eliminado");
+		}
+		
+	}
+
+	@Override
+	@Transactional
+	public Client searchName(Client client) {
+		Client clientSearch = null;
+		if (client != null) {
+			clientSearch = clientDao.searchName(client);
+		} else {
+			System.out.println("No se ha encontrado ningún cliente con ese nombre y apellidos");
 		}
 		return client;
 	}
