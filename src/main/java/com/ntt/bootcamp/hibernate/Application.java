@@ -117,8 +117,8 @@ public class Application implements CommandLineRunner {
 		//Buscar por nombre y apellidos
 		/*System.out.println("BUSQUEDA POR NOMBRE Y APELLIDOS: ");		
 		searchClient.setName("Adrian");
-		searchClient.setLastName1("a");
-		searchClient.setLastName2("a");
+		searchClient.setLastName1("Gomez");
+		searchClient.setLastName2("Luna");
 		searchClient.setDni("123");
 		searchClient = clientService.searchName(searchClient);
 		if (searchClient != null) {

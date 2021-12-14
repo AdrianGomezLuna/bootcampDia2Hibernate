@@ -2,6 +2,7 @@ package com.ntt.bootcamp.hibernate.bbdd.dao.impl;
 
 import java.util.List;
 
+import javax.management.Query;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
@@ -74,7 +75,10 @@ public class ClientDaoImpl implements ClientDao {
 		Client clientSearch = null;
 		// Obtenemos la sesión
 		Session currentSession = entityManager.unwrap(Session.class);
-		clientSearch = currentSession.find(Client.class, client.getName());
+		String q = "SELECT * FROM `client` WHERE name='"+ client.getName() + 
+				"' and last_name1='" + client.getLastName1() +
+				"' and last_name2='" + client.getLastName2() + "'";
+		clientSearch = (Client) currentSession.createNativeQuery(q);
 		
 		return clientSearch;
 	}
